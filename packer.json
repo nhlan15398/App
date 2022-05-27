@@ -1,0 +1,55 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "ami_name": "test-app",
+        "aws_region": "ap-southeast-1",
+        "ssh_username": "root",
+        "vpc_id": "vpc-04046efe549ca2f31",
+        "subnet_id": "vpc-04046efe549ca2f31",
+        "security_group_id": "sg-062cda044de18c901",
+        "instance_type": "t2.micro",
+        "Name": "test"
+    },
+    "builders": [{
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `aws_region`}}",
+        "instance_type": "{{user `instance_type`}}",
+        "security_group_id": "{{user `security_group_id`}}",
+        "force_deregister": "true",
+        "ssh_username": "{{user `ssh_username`}}",
+        "communicator": "ssh",
+        "associate_public_ip_address": true,
+        "subnet_id": "{{user `subnet_id`}}",
+        "ami_name": "{{user `ami_name`}}",
+        "source_ami_filter": {
+            "filters": {
+                "virtualization-type": "hvm",
+                "name": "amzn2-ami-kernel-5.10-hvm-2.0.20220426.0-x86_64-gp2",
+                "root-device-type": "ebs"
+            },
+            "owners": ["137112412989"],
+            "most_recent": true
+        },
+        "run_tags": {
+            "Name": "{{user `Name`}}"
+        }
+    }],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "../provisioners/scripts/install-ansible.sh"
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "../provisioners/ansible/playbook.yaml",
+            "group_vars": "../provisioners/ansible/inventories/group_vars/all.yaml",
+            "role_paths": [
+                "../provisioners/ansible/roles/create/tasks/main.yaml",
+                "../provisioners/ansible/roles/java/tasks/main.yaml",
+                "../provisioners/ansible/roles/services/tasks/main.yaml"
+            ]
+        }]
+}

@@ -1,0 +1,13 @@
+#Copy file jar to "{{ folder_deploy }}/{{ application_name }}.jar"
+ 
+#Create systemd service 
+- name: "Create systemd service file"
+  template:
+    src: application.service.j2
+    dest: "{{ script }}"
+    mode: 0755
+    owner: "{{ project.username }}"
+    group: "{{ project.group }}"
+  when: use_system_d
+  notify:
+    - "Restart application"
