@@ -45,6 +45,10 @@
                 "./provisioners/ansible/roles/create",
                 "./provisioners/ansible/roles/java",
                 "./provisioners/ansible/roles/services"
+            ],
+            "extra_arguments": [ 
+                "--extra-vars", "username={{user `username`}}",
+                "--extra-vars", "group={{user `group`}}"
             ]
         }]
 }

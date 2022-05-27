@@ -1,8 +1,6 @@
 ---
 #Project User,Group and default_shell
-project:
-  username: "none"
-  group: "none"
+
 default_shell: "/bin/bash"
 
 # home_parnet directory
@@ -15,6 +13,6 @@ java_env_file: /etc/profile.d/java.sh
 
 #application
 application_name: none
-folder_deploy: /home/{{ project.username }}/{{ application_name }}
+folder_deploy: /home/{{ username }}/{{ application_name }}
 services_folder: /usr/lib/systemd/system
 script: "{{ services_folder }}/{{ application_name }}.service"

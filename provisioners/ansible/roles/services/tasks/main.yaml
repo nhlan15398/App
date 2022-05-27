@@ -6,7 +6,7 @@
     src: application.service.j2
     dest: "{{ script }}"
     mode: 0755
-    owner: "{{ project.username }}"
-    group: "{{ project.group }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
   notify:
     - "Restart application"

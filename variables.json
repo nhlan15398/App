@@ -8,5 +8,7 @@
     "subnet_id": "subnet-06e1671565e6206f3",
     "security_group_id": "sg-022b72f76166a61d2",
     "instance_type": "t2.micro",
-    "Name": "test" 
+    "Name": "test",
+    "username": "hoanglan",
+    "group": "hoanglan"
 }
