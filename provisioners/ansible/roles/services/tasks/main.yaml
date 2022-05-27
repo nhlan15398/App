@@ -8,6 +8,5 @@
     mode: 0755
     owner: "{{ project.username }}"
     group: "{{ project.group }}"
-  when: use_system_d
   notify:
     - "Restart application"

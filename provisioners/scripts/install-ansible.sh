@@ -1,3 +1,4 @@
 #!/bin/bash
-sudo yum install -y epel-release
-sudo yum install -y ansible
+
+#Install ansible2
+sudo amazon-linux-extras install ansible2 -y
