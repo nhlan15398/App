@@ -40,15 +40,11 @@
             "type": "ansible-local",
             "playbook_file": "./provisioners/ansible/playbook.yaml",
             "inventory_file": "./provisioners/ansible/inventories/hosts",
-            "group_vars": "./provisioners/ansible/inventories/group_vars",
+            "group_vars": "./provisioners/ansible/inventories/group_vars/{{user `timestap`}}",
             "role_paths": [
                 "./provisioners/ansible/roles/create",
                 "./provisioners/ansible/roles/java",
                 "./provisioners/ansible/roles/services"
-            ],
-            "extra_arguments": [ 
-                "--extra-vars", "username={{user `username`}}",
-                "--extra-vars", "group={{user `group`}}"
             ]
         }]
 }

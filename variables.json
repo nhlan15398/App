@@ -9,6 +9,5 @@
     "security_group_id": "sg-022b72f76166a61d2",
     "instance_type": "t2.micro",
     "Name": "test",
-    "username": "hoanglan",
-    "group": "hoanglan"
+    "timestap": "backend"
 }
